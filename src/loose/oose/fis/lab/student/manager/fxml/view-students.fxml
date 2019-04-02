@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="loose.oose.fis.lab.student.manager.controllers.ViewStudentsController">
+    <children>
+        <BorderPane prefHeight="400.0" prefWidth="600.0">
+            <center>
+                <TableView fx:id="studentTable" prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                    <columns>
+                        <TableColumn fx:id="studentLastNameColumn" prefWidth="190.0" text="Last Name"/>
+                        <TableColumn fx:id="studentFirstNameColumn" prefWidth="190.0" text="First Name"/>
+                        <TableColumn fx:id="studentAgeColumn" prefWidth="90.0" text="Age"/>
+                        <TableColumn fx:id="studentMeanGradeColumn" prefWidth="90.0" sortType="DESCENDING" text="Mean Grade"/>
+                    </columns>
+                </TableView>
+            </center>
+            <padding>
+                <Insets bottom="50.0" left="20.0" right="20.0" top="50.0"/>
+            </padding>
+        </BorderPane>
+    </children>
+</AnchorPane>
+
+        Create a new Java Class called ViewStudentsController in the loose.oose.fis.lab.student.manager.controllers package. Add the following code to it:
+        package loose.oose.fis.lab.student.manager.controllers;
+
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+        import javafx.fxml.FXML;
+        import javafx.scene.control.TableColumn;
+        import javafx.scene.control.TableView;
+        import javafx.scene.control.cell.PropertyValueFactory;
+        import loose.oose.fis.lab.student.manager.model.Student;
+
+        public class ViewStudentsController {
+
+        @FXML
+        public TableView<Student> studentTable;
+
+@FXML
+public TableColumn<Student, String> studentLastNameColumn;
+@FXML
+public TableColumn<Student, String> studentFirstNameColumn;
+@FXML
+public TableColumn<Student, Integer> studentAgeColumn;
+@FXML
+public TableColumn<Student, Double> studentMeanGradeColumn;
+
+@FXML
+public void initialize() {
+studentLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    studentFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        studentAgeColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+            studentMeanGradeColumn.setCellValueFactory(new PropertyValueFactory<>("meanGrade"));
+
+                studentTable.setItems(students);
+                }
+
+                private ObservableList<Student> students = FXCollections.observableArrayList(
+                    new Student("John", "Doe", 20, 8.73),
+                    new Student("Jane", "Does", 23, 9.35),
+                    new Student("Jack", "Black", 19, 6.58),
+                    new Student("Julia", "Nice", 21, 9.85),
+                    new Student("Johnny", "Jackson", 24, 9.97),
+                    new Student("Michelle", "Roberts", 22, 7.65)
+                    );
+                    }
